@@ -1,0 +1,85 @@
+
+//vibe_type permitir editar meta post
+function type_to_api( $args, $post_type ) {
+    if ( 'unit' === $post_type ) {
+      $args['show_in_rest'] = true;
+}
+
+return $args;
+}
+
+add_filter( 'register_post_type_args', 'type_to_api', 10, 2 );
+
+add_action( 'rest_api_init', 'create_api_posts_meta_field' );
+
+function create_api_posts_meta_field() {
+
+register_rest_field( 'unit', 'vibe_type', array(
+       'get_callback'    => 'get_post_meta_for_api',
+       'update_callback' => 'update_post_meta_for_api',
+    )
+);
+}
+
+function get_post_meta_for_api( $object, $field_name, $request ) {
+
+$post_id = $object['id'];
+
+$meta = get_post_meta( $post_id );
+
+if ( isset( $meta['vibe_type' ] ) && isset( $meta['vibe_type' ][0] 
+) ) {
+    //return the post meta
+    return $meta['vibe_type' ][0];
+}
+
+return false;
+}
+
+function update_post_meta_for_api( $value, $object, $field_name ) {
+
+if ( ! $value ) {
+    return;
+}
+
+return update_post_meta( $object->ID, $field_name, $value );
+}
+
+
+//vibe_duration permitir editar meta post
+function duration_to_api( $args, $post_type ) {
+    if ( 'unit' === $post_type ) {
+      $args['show_in_rest'] = true;
+}
+
+return $args;
+}
+
+add_filter( 'register_post_type_args', 'duration_to_api', 10, 2 );
+
+add_action( 'rest_api_init', 'create_api_posts_meta_field_dur' );
+
+function create_api_posts_meta_field_dur() {
+
+register_rest_field( 'unit', 'vibe_duration', array(
+       'get_callback'    => 'get_post_meta_for_api_dur',
+       'update_callback' => 'update_post_meta_for_api',
+    )
+);
+}
+
+function get_post_meta_for_api_dur( $object, $field_name, $request ) {
+
+$post_id = $object['id'];
+
+$meta = get_post_meta( $post_id );
+
+if ( isset( $meta['vibe_duration' ] ) && isset( $meta['vibe_duration' ][0] 
+) ) {
+    //return the post meta
+    return $meta['vibe_duration' ][0];
+}
+
+return false;
+}
+

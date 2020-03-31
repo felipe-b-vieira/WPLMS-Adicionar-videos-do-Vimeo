@@ -6,7 +6,7 @@ Para utilizar é necessário ativar o API point para as units do WPLMS e adicion
 Também é necessário gerar uma senha de api point através de plugin.
 A primeira linha do arquivo contendo as aulas deve conter:
 
-usuario,senhaapi,link do api endpoint do wordpress,id do autor
+usuario,senhaapi,link do api endpoint do wordpress,id do autor,id curso
 
 //ATUALIZAÇÃO//
 
